@@ -4,11 +4,11 @@
     "etaRestriction": false,
     "welcome": true,
     "opLink": "www.op.com",
-    "rulesLink": "www.rules.com",
+    "rulesLink": "http://goo.gl/8HLWph",
     "themeLink": "www.theme.com",
-    "fbLink": "https://www.facebook.com/plugdj",
-    "youtubeLink": "www.youtube.com",
-    "website": "www.myroom.com",
-    "intervalMessages": ["Message 1", "Message 2"],
+    "fbLink": "https://www.facebook.com/SrpskiTutorijali",
+    "youtubeLink": "http://www.youtube.com/user/SrpskiTutoriali",
+    "website": "http://srptut.blogspot.com/",
+    "intervalMessages": ["Test poruka 1", "Test poruka 2"],
     "messageInterval": 4
 }
