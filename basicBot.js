@@ -856,7 +856,7 @@ var esBot = {
                 esBot.room.roomstats.chatmessages++;                                
             },
             spam: [
-                'hueh','hu3','brbr','heu','brbr','kkkk','spoder','mafia','zuera','zueira',
+                'hueh','hahaha','brbr','heu','brbr','kkkk','spoder','mafia','zuera','zueira',
                 'zueria','aehoo','aheu','alguem','algum','brazil','zoeira','fuckadmins','affff','vaisefoder','huenaarea',
                 'hitler','ashua','ahsu','ashau','lulz','huehue','hue','huehuehue','merda','pqp','puta','mulher','pula','retarda','caralho','filha','ppk',
                 'gringo','fuder','foder','hua','ahue','modafuka','modafoka','mudafuka','mudafoka','ooooooooooooooo','foda'
@@ -1437,7 +1437,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me Emoji list: http://www.emoji-cheat-sheet.com/');
+                                    API.sendChat('/me Emoji lista: http://www.emoji-cheat-sheet.com/');
                                 };                              
                         },
                 },
@@ -1611,7 +1611,7 @@ var esBot = {
                                         
                                     }
 
-                                    else API.sendChat('/me [@' + chat.from + '] No valid time (minutes) specified.');                                   
+                                    else API.sendChat('/me [@' + chat.from + '] Vreme nije ispravno uneseno (minute).');                                   
                                 };                              
                         },
                 },
@@ -1774,7 +1774,7 @@ var esBot = {
                                             }
                                         }
                                         if(validReason){
-                                            API.sendChat('/me [' + chat.from + ' used lockskip.]');
+                                            API.sendChat('/me [' + chat.from + ' je koristio lockskip.]');
                                             esBot.roomUtilities.booth.lockBooth();
                                             //esBot.roomUtilities.changeDJCycle();
                                             setTimeout(function(id){
@@ -1810,7 +1810,7 @@ var esBot = {
                                     var pos = msg.substring(cmd.length + 1);
                                     if(!isNaN(pos)){
                                         esBot.roomSettings.lockskipPosition = pos;
-                                        return API.sendChat('/me [@' + chat.from + '] Lockskip will now move the dj to position ' + esBot.roomSettings.lockskipPosition + '.');
+                                        return API.sendChat('/me [@' + chat.from + '] Lockskip ce premestiti DJ-a na poziciju ' + esBot.roomSettings.lockskipPosition + '.');
                                     }
                                     else return API.sendChat('/me [@' + chat.from + '] No valid position specified.');
                                 };                              
@@ -1866,7 +1866,7 @@ var esBot = {
                                     if(!esBot.roomSettings.motdEnabled) esBot.roomSettings.motdEnabled = !esBot.roomSettings.motdEnabled;
                                     if(isNaN(argument)){
                                         esBot.roomSettings.motd = argument;
-                                        API.sendChat("/me MotD set to: " + esBot.roomSettings.motd);
+                                        API.sendChat("/me MotD je podesena na: " + esBot.roomSettings.motd);
                                     }
                                     else{
                                         esBot.roomSettings.motdInterval = argument;
@@ -2015,7 +2015,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me Be right back.');
+                                    API.sendChat('/me Odmah se vracam.');
                                     esBot.disconnectAPI();
                                     kill();
                                     setTimeout(function(){$.getScript(esBot.scriptLink);},2000);
@@ -2085,7 +2085,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.rulesLink === "string")
-                                        return API.sendChat("/me Please find the room rules here: " + esBot.roomSettings.rulesLink);                                
+                                        return API.sendChat("/me Procitaj pravila: " + esBot.roomSettings.rulesLink);                                
                                 };                              
                         },
                 },
@@ -2129,7 +2129,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me This bot was made by ' + esBot.creator + '.');
+                                    API.sendChat('/me Ovaj bot je napravio ' + esBot.creator + '.');
                                 };                              
                         },
                 },
@@ -2194,7 +2194,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.themeLink === "string")
-                                        API.sendChat("/me Please find the permissible room genres here: " + esBot.roomSettings.themeLink);
+                                        API.sendChat("/me Dozvoljene zanrove u sobi pronadjite ovde: " + esBot.roomSettings.themeLink);
                                 
                                 };                              
                         },
@@ -2258,7 +2258,7 @@ var esBot = {
                                             found = true;
                                         }
                                       }
-                                      if(!found) return API.sendChat('/me [@' + chat.from + '] The user was not banned.');
+                                      if(!found) return API.sendChat('/me [@' + chat.from + '] Ovaj korisnik nije banovan.');
                                       
                                     API.moderateUnbanUser(user.id);
                                 
@@ -2291,7 +2291,7 @@ var esBot = {
                                     if(msg.indexOf('@') === -1 && msg.indexOf('all') !== -1){
                                         if(permFrom > 2){
                                             esBot.room.mutedUsers = [];
-                                            return API.sendChat('/me [@' + chat.from + '] Unmuted everyone.');
+                                            return API.sendChat('/me [@' + chat.from + '] je unmutovao sviju.');
                                         }
                                         else return API.sendChat('/me [@' + chat.from + '] Only managers and up can unmute everyone at once.')
                                     }
@@ -2392,11 +2392,11 @@ var esBot = {
                                 else{
                                     if(esBot.roomSettings.welcome){
                                         esBot.roomSettings.welcome = !esBot.roomSettings.welcome;
-                                        return API.sendChat('/me [@' + chat.from + '] welcome message disabled.');
+                                        return API.sendChat('/me [@' + chat.from + '] pozdravna poruka iskljucena.');
                                     }
                                     else{
                                         esBot.roomSettings.welcome = !esBot.roomSettings.welcome;
-                                        return API.sendChat('/me [@' + chat.from + '] welcome message enabled.');
+                                        return API.sendChat('/me [@' + chat.from + '] pozdravna poruka ukljucena.');
                                     } 
                                 
                                 };                              
