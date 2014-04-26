@@ -1317,8 +1317,8 @@ var esBot = {
                                    'ti daje zlatni kolacic. Ne mozes ga pojesti zato sto je od zlata. hhh...',
                                    'ti daje kakao kolacic,odlicno ide sa mlekom!',
                                    'ti daje kolacic sa dugom,napravljen sa ljubavlju :heart:',
-                                   'ti daje stari kolacic koji je stajao na kisi, blatnjav je.'
-                                   'ti je upravo ispekao kolacice,mirisu tako sveze...'
+                                   'ti daje stari kolacic koji je stajao na kisi, blatnjav je.',
+                                   'ti je upravo ispekao kolacice,mirisu tako sveze...',
                             ],
 
                         getCookie: function() {
@@ -2411,7 +2411,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.website === "string")
-                                        API.sendChat('/me Please visit our website: ' + esBot.roomSettings.website);
+                                        API.sendChat('/me Nas sajt: ' + esBot.roomSettings.website);
                                 };                              
                         },
                 },
@@ -2424,7 +2424,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.youtubeLink === "string")
-                                        API.sendChat('/me [' + chat.from + '] Subscribe to us on youtube: ' + esBot.roomSettings.youtubeLink);                                
+                                        API.sendChat('/me [' + chat.from + '] Pronadji nas na Youtube-ue: ' + esBot.roomSettings.youtubeLink);                                
                                 };                              
                         },
                 },
