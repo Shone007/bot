@@ -9,11 +9,11 @@
     "cycleGuard": true,
     "maximumCycletime": 10,                
     "timeGuard": true,
-    "maximumSongLength": 10,                
+    "maximumSongLength": 5,                
     "autodisable": true,                
     "commandCooldown": 30,
     "usercommandsEnabled": true,                
-    "lockskipPosition": 3,
+    "lockskipPosition": 10,
     "lockskipReasons": [ ["theme", "Ova pesma se ne uklapa u dozvoljene zanrove. "], 
             ["op", "This song is on the OP list. "], 
             ["history", "Ova pesma je u istoriji. "], 
@@ -35,7 +35,7 @@
     "themeLink": null,
     "fbLink": true,
     "youtubeLink": true,
-    "website": null,
+    "website": true,
     "intervalMessages": [],
     "messageInterval": 5
 }
