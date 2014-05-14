@@ -1309,11 +1309,11 @@ var esBot = {
                                    'ti daje kolacic srece. Pise "Daj nekom posebnom kompliment"',
                                    'ti daje kolacic srece. Pise "Rizoikuj!"',
                                    'ti daje kolacic srece. Pise "Izadji napolje,lepo je vreme."',
-                                   'ti daje kolacic srece. It reads "Don\'t forget to eat your veggies!"',
-                                   'gives you a fortune cookie. It reads "Do you even lift?"',
-                                   'gives you a fortune cookie. It reads "m808 molim te"',
-                                   'gives you a fortune cookie. It reads "If you move your hips, you\'ll get all the ladies."',
-                                   'gives you a fortune cookie. It reads "I love you."',
+                                   'ti daje kolacic srece. It reads "Ne zaboravi da jedes povrce!"',
+                                   'ti daje kolacic srece. It reads "Do you even lift?"',
+                                   'ti daje kolacic srece. It reads "m808 molim te"',
+                                   'ti daje kolacic srece. It reads "If you move your hips, you\'ll get all the ladies."',
+                                   'ti daje kolacic srece. Pise "Volim te."',
                                    'ti daje zlatni kolacic. Ne mozes ga pojesti zato sto je od zlata. hhh...',
                                    'ti daje kakao kolacic,odlicno ide sa mlekom!',
                                    'ti daje kolacic sa dugom,napravljen sa ljubavlju :heart:',
@@ -2101,7 +2101,7 @@ var esBot = {
                                     var woots = esBot.room.roomstats.totalWoots;
                                     var mehs = esBot.room.roomstats.totalMehs;
                                     var grabs = esBot.room.roomstats.totalCurates;
-                                    API.sendChat('/me [@' + from + '] Total woots: ' + woots + ', total mehs: ' + mehs + ', total grabs: ' + grabs + '.');
+                                    API.sendChat('/me [@' + from + '] Ukupno woot: ' + woots + ', ukupno meh: ' + mehs + ', ukupno grab: ' + grabs + '.');
                                 };                              
                         },
                 },
@@ -2113,7 +2113,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me [' + chat.from + ' used skip.]');
+                                    API.sendChat('/me [' + chat.from + ' je koristio skip.]');
                                     API.moderateForceSkip();
                                     esBot.room.skippable = false;
                                     setTimeout(function(){ esBot.room.skippable = true}, 5*1000);
