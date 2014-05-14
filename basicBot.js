@@ -39,13 +39,13 @@ var storeToStorage = function(){
 
 var retrieveFromStorage = function(){
     var info = localStorage.getItem("esBotStorageInfo");
-    if(info === null) API.chatLog("No previous data found.");
+    if(info === null) API.chatLog("Nema starih podataka.");
     else{
         var settings = JSON.parse(localStorage.getItem("esBotRoomSettings"));
         var room = JSON.parse(localStorage.getItem("esBotRoom"));
         var elapsed = Date.now() - JSON.parse(info).time;
         if((elapsed < 1*60*60*1000)){
-            API.chatLog('Retrieving previously stored data.');
+            API.chatLog('Stari podaci ucitani.');
             esBot.roomSettings = settings;
             esBot.room.users = room.users;
             esBot.room.afkList = room.afkList;
@@ -55,7 +55,7 @@ var retrieveFromStorage = function(){
             esBot.room.roomstats = room.roomstats;
             esBot.room.messages = room.messages;
             esBot.room.queue = room.queue;
-            API.chatLog('Previously stored data succesfully retrieved.');
+            API.chatLog('Prijasnji sacuvani podaci uspesno ucitani.');
         }
     }
     var json_sett = null;
@@ -116,7 +116,7 @@ var esBot = {
             afkRankCheck: "ambassador",                
             motdEnabled: false,
             motdInterval: 5,
-            motd: "Novi klip:",                
+            motd: "Ovo je poruka dana",                
             filterChat: true,
             etaRestriction: false,
             welcome: true,
@@ -315,14 +315,14 @@ var esBot = {
                 if(user.lastDC.time === null) return ('/me @' + name + ' se nije diskonektovao od kad sam ja tu.');
                 var dc = user.lastDC.time;
                 var pos  = user.lastDC.position;
-                if(pos === null) return ("/me The waitlist needs to update at least once to register the user's last position.");
+                if(pos === null) return ("/me Lista cekanja treba da se osvezi bar jednom da registrujem poslednju poziciju korisnika.");
                 var timeDc = Date.now() - dc;
                 var validDC = false;
                 if(esBot.roomSettings.maximumDc * 60 * 1000 > timeDc){
                     validDC = true;
                 }                        
                 var time = esBot.roomUtilities.msToStr(timeDc);
-                if(!validDC) return ("/me @" + esBot.userUtilities.getUser(user).username + "'ov poslednji (DC ili odlazak) je bio davno: " + time + ".");
+                if(!validDC) return ("/me @" + esBot.userUtilities.getUser(user).username + "-ov poslednji (DC ili odlazak) je bio davno: " + time + ".");
                 var songsPassed = esBot.room.roomstats.songCount - user.lastDC.songCount;
                 var afksRemoved = 0;
                 var afkList = esBot.room.afkList;
@@ -674,7 +674,7 @@ var esBot = {
                 ch = msg.charAt(i);
                 if(ch >= 'A' && ch <= 'Z') capitals++;
             }
-            if(capitals >= 40){
+            if(capitals >= 5){
                 API.sendChat("/me @" + chat.from + ", iskljuci capslock.");
                 return true;
             }
@@ -1025,7 +1025,7 @@ var esBot = {
                         case 'bouncer': minPerm = 2; break;
                         case 'residentdj': minPerm = 1; break;
                         case 'user': minPerm = 0; break;
-                        default: API.chatLog('error assigning minimum permission');
+                        default: API.chatLog('Greska pri ucitavanju minimalnih odobrenja!');
                 };
                 if(perm >= minPerm){
                 return true;
@@ -1125,12 +1125,12 @@ var esBot = {
                                     if(esBot.roomSettings.afkRemoval){
                                         esBot.roomSettings.afkRemoval = !esBot.roomSettings.afkRemoval;
                                         clearInterval(esBot.room.afkInterval);
-                                        API.sendChat('/me [@' + chat.from + '] Turned afk removal off.');
+                                        API.sendChat('/me [@' + chat.from + '] je iskljucio AFK brisanje.');
                                       }
                                     else {
                                         esBot.roomSettings.afkRemoval = !esBot.roomSettings.afkRemoval;
                                         esBot.room.afkInterval = setInterval(function(){esBot.roomUtilities.afkCheck()}, 2 * 1000);
-                                        API.sendChat('/me [@' + chat.from + '] Turned afk removal on.');
+                                        API.sendChat('/me [@' + chat.from + '] je ukljucio AFK brisanje.');
                                       }
                                 };                              
                         },
@@ -1144,7 +1144,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     var msg = chat.message;
-                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] No user specified.')
+                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] Nije navedeno ime korisnika.')
                                     var name = msg.substring(cmd.length + 2);
                                     var user = esBot.userUtilities.lookupUserName(name);
                                     if(typeof user === 'boolean') return API.sendChat('/me [@' + chat.from + '] Invalid user specified.');
