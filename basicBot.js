@@ -695,6 +695,12 @@ var esBot = {
                     return true;
                 }
             } 
+            for (var i = 0; i < esBot.chatUtilities.mehSentences.length; i++){
+                if(msg.indexOf(esBot.chatUtilities.mehSentences[i]) >= 0){
+                    API.sendChat("/me @" + chat.from + ", nemoj da pises meh.");
+                    return true;
+                }
+            }
             return false;
         },        
         chatUtilities: {        
@@ -863,7 +869,9 @@ var esBot = {
             ],
             curses: [
                 'nigger', 'faggot', 'nigga', 'niqqa','motherfucker','modafocka'
-            ],                        
+            ],
+            mehSentences: ['meh','meeh'
+            ],
             beggarSentences: ['fanme','funme','becomemyfan','trocofa','fanforfan','fan4fan','fan4fan','hazcanfanz','fun4fun','fun4fun',
                 'meufa','fanz','isnowyourfan','reciprocate','fansme','givefan','fanplz','fanpls','plsfan','plzfan','becomefan','tradefan',
                 'fanifan','bemyfan','retribui','gimmefan','fansatfan','fansplz','fanspls','ifansback','fanforfan','addmefan','retribuo',
