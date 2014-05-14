@@ -13,7 +13,7 @@
     "autodisable": true,                
     "commandCooldown": 30,
     "usercommandsEnabled": true,                
-    "lockskipPosition": 10,
+    "lockskipPosition": 50,
     "lockskipReasons": [ ["theme", "Ova pesma se ne uklapa u dozvoljene zanrove. "], 
             ["op", "This song is on the OP list. "], 
             ["history", "Ova pesma je u istoriji. "], 
