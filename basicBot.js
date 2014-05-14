@@ -126,7 +126,7 @@ var esBot = {
             fbLink: true,
             youtubeLink: true,
             website: true,
-            intervalMessages: [],
+            intervalMessages: [Teeeeeest],
             messageInterval: 5,                      
         },        
         room: {        
