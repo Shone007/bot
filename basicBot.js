@@ -176,7 +176,7 @@ var esBot = {
                 countdown : null,
                 startRoulette: function(){
                     esBot.room.roulette.rouletteStatus = true;
-                    esBot.room.roulette.countdown = setTimeout(function(){ esBot.room.roulette.endRoulette(); }, 60 * 1000);
+                    esBot.room.roulette.countdown = setTimeout(function(){ esBot.room.roulette.endRoulette(); }, 30 * 1000);
                     API.sendChat("/me Rulet je okrenut! Kucaj !join da ucestvujes!");
                 },
                 endRoulette: function(){
