@@ -31,10 +31,10 @@
     "etaRestriction": false,
     "welcome": true,
     "opLink": null,
-    "rulesLink": null,
+    "rulesLink": true,
     "themeLink": null,
-    "fbLink": null,
-    "youtubeLink": null,
+    "fbLink": true,
+    "youtubeLink": true,
     "website": null,
     "intervalMessages": [],
     "messageInterval": 5
