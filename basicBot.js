@@ -674,7 +674,7 @@ var esBot = {
                 ch = msg.charAt(i);
                 if(ch >= 'A' && ch <= 'Z') capitals++;
             }
-            if(capitals >= 2){
+            if(capitals >= 7){
                 API.sendChat("/me @" + chat.from + ", iskljuci capslock.");
                 return true;
             }
