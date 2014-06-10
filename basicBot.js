@@ -22,7 +22,7 @@ var kill = function(){
     clearInterval(esBot.room.autodisableInterval);
     clearInterval(esBot.room.afkInterval);
     esBot.status = false;
-    console.log("Bot was killed.");
+    console.log("je mrtav,pregazio ga je avion.");
 }
 
 var storeToStorage = function(){
@@ -41,13 +41,13 @@ var storeToStorage = function(){
 var retrieveFromStorage = function(){
     if(navigator.userAgent.toLowerCase().indexOf("chrome")<0) return;
     var info = localStorage.getItem("esBotStorageInfo");
-    if(info === null) API.chatLog("No previous data found.");
+    if(info === null) API.chatLog("Podaci nisu pronadjeni.");
     else{
         var settings = JSON.parse(localStorage.getItem("esBotRoomSettings"));
         var room = JSON.parse(localStorage.getItem("esBotRoom"));
         var elapsed = Date.now() - JSON.parse(info).time;
         if((elapsed < 1*60*60*1000)){
-            API.chatLog('Retrieving previously stored data.');
+            API.chatLog('Vracanje starih podataka...');
             for(var prop in settings){
                 esBot.roomSettings[prop] = settings[prop];
             }
@@ -60,7 +60,7 @@ var retrieveFromStorage = function(){
             esBot.room.roomstats = room.roomstats;
             esBot.room.messages = room.messages;
             esBot.room.queue = room.queue;
-            API.chatLog('Previously stored data succesfully retrieved.');
+            API.chatLog('Podaci uspesno ucitani.');
         }
     }
     var json_sett = null;
@@ -109,13 +109,13 @@ var esBot = {
             commandCooldown: 30,
             usercommandsEnabled: true,                
             lockskipPosition: 3,
-            lockskipReasons: [ ["theme", "This song does not fit the room theme. "], 
-                    ["op", "This song is on the OP list. "], 
-                    ["history", "This song is in the history. "], 
-                    ["mix", "You played a mix, which is against the rules. "], 
-                    ["sound", "The song you played had bad sound quality or no sound. "],
-                    ["nsfw", "The song you contained was NSFW (image or sound). "], 
-                    ["unavailable", "The song you played was not available for some users. "] 
+            lockskipReasons: [ ["theme", "Pesma se ne uklapa u temu sobe. "], 
+                    ["op", "Ova pesma je previse cesto pustana. "], 
+                    ["history", "Ova pesma je u istoriji."], 
+                    ["mix", "Pustio si mix,sto je protiv pravila. "], 
+                    ["sound", "Ova pesma ima los kvalitet zvuka,ili ga uopste nema. "],
+                    ["nsfw", "Ova pesma sadrzi NSFW (slika ili zvuk). "], 
+                    ["unavailable", "Pesma koju si pustio nije dostupna. "] 
                 ],
             afkpositionCheck: 15,
             afkRankCheck: "ambassador",                
@@ -183,7 +183,7 @@ var esBot = {
                 startRoulette: function(){
                     esBot.room.roulette.rouletteStatus = true;
                     esBot.room.roulette.countdown = setTimeout(function(){ esBot.room.roulette.endRoulette(); }, 60 * 1000);
-                    API.sendChat("/me The roulette is now open! Type !join to participate!");
+                    API.sendChat("/me Rulet je zavrtit! kucaj!join da ucestvujes!");
                 },
                 endRoulette: function(){
                     esBot.room.roulette.rouletteStatus = false;
@@ -193,7 +193,7 @@ var esBot = {
                     var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
                     var user = esBot.userUtilities.lookupUser(winner);
                     var name = user.username;
-                    API.sendChat("/me A winner has been picked! @" + name + " to position " + pos + ".");
+                    API.sendChat("/me Imamo pobednika! @" + name + " na poziciju " + pos + ".");
                     setTimeout(function(winner){
                         esBot.userUtilities.moveUser(winner, pos, false);
                     }, 1*1000, winner, pos);
@@ -316,19 +316,19 @@ var esBot = {
             },        
             dclookup: function(id){
                 var user = esBot.userUtilities.lookupUser(id);                        
-                if(typeof user === 'boolean') return ('/me User not found.');
+                if(typeof user === 'boolean') return ('/me Korisnik nije pronadjen.');
                 var name = user.username;
-                if(user.lastDC.time === null) return ('/me @' + name + ' did not disconnect during my time here.');
+                if(user.lastDC.time === null) return ('/me @' + name + ' se nije diskoektovao od kad sam ja tu.');
                 var dc = user.lastDC.time;
                 var pos  = user.lastDC.position;
-                if(pos === null) return ("/me The waitlist needs to update at least once to register the user's last position.");
+                if(pos === null) return ("/me Lista treba da se osvezi jednog da registrujem poslednju poziciju korisnika.");
                 var timeDc = Date.now() - dc;
                 var validDC = false;
                 if(esBot.roomSettings.maximumDc * 60 * 1000 > timeDc){
                     validDC = true;
                 }                        
                 var time = esBot.roomUtilities.msToStr(timeDc);
-                if(!validDC) return ("/me @" + esBot.userUtilities.getUser(user).username + "'s last disconnect (DC or leave) was too long ago: " + time + ".");
+                if(!validDC) return ("/me @" + esBot.userUtilities.getUser(user).username + "-ov poslednji odlazak ili DC je bio pre " + time + ".");
                 var songsPassed = esBot.room.roomstats.songCount - user.lastDC.songCount;
                 var afksRemoved = 0;
                 var afkList = esBot.room.afkList;
@@ -341,7 +341,7 @@ var esBot = {
                 }
                 var newPosition = user.lastDC.position - songsPassed - afksRemoved;
                 if(newPosition <= 0) newPosition = 1;
-                var msg = '/me @' + esBot.userUtilities.getUser(user).username + ' disconnected ' + time + ' ago and should be at position ' + newPosition + '.';
+                var msg = '/me @' + esBot.userUtilities.getUser(user).username + ' se diskonektovao ' + time + ' i trebao bi biti ' + newPosition + '.';
                 esBot.userUtilities.moveUser(user.id, newPosition, true);
                 return msg;             
             },              
@@ -608,7 +608,7 @@ var esBot = {
                     var now = +new Date();
                     var interfix = '';
                     if(plays > 1) interfix = 's'
-                    API.sendChat('/me :repeat: This song has been played ' + plays + ' time' + interfix + ' in the last ' + esBot.roomUtilities.msToStr(Date.now() - firstPlayed) + ', last play was ' + esBot.roomUtilities.msToStr(Date.now() - lastPlayed) + ' ago. :repeat: ');
+                    API.sendChat('/me :repeat: Ova pesma je pustana ' + plays + ' vreme' + interfix + ' u zadnjih ' + esBot.roomUtilities.msToStr(Date.now() - firstPlayed) + ', poslednje pustanje je bilo pre ' + esBot.roomUtilities.msToStr(Date.now() - lastPlayed) + ' . :repeat: ');
 
                     esBot.room.historyList[i].push(+new Date());
                     alreadyPlayed = true;
@@ -621,7 +621,7 @@ var esBot = {
             var newMedia = obj.media;
             if(esBot.roomSettings.timeGuard && newMedia.duration > esBot.roomSettings.maximumSongLength*60  && !esBot.room.roomevent){
                 var name = obj.dj.username;
-                API.sendChat('/me @' + name + ', your song is longer than ' + esBot.roomSettings.maximumSongLength + ' minutes, you need permission to play longer songs.');
+                API.sendChat('/me @' + name + ', tvoja pesma je duza od ' + esBot.roomSettings.maximumSongLength + ' minuta,treba ti dozvola za pustanje duzih pesama.');
                 API.moderateForceSkip();
             }
             var user = esBot.userUtilities.lookupUser(obj.dj.id);
@@ -687,23 +687,23 @@ var esBot = {
                 if(ch >= 'A' && ch <= 'Z') capitals++;
             }
             if(capitals >= 40){
-                API.sendChat("/me @" + chat.from + ", unglue your capslock button please.");
+                API.sendChat("/me @" + chat.from + ", iskljuci capslock.");
                 return true;
             }
             msg = msg.toLowerCase();
             if(msg === 'skip'){
-                    API.sendChat("/me @" + chat.from + ", don't ask for skips.");
+                    API.sendChat("/me @" + chat.from + ", ne trazi skip.");
                     return true;
                     }
             for (var j = 0; j < esBot.chatUtilities.spam.length; j++){
                 if(msg === esBot.chatUtilities.spam[j]){
-                    API.sendChat("/me @" + chat.from + ", please don't spam.");
+                    API.sendChat("/me @" + chat.from + ", nemoj da spamujes,dobices ban.");
                     return true;
                     }
                 }
             for (var i = 0; i < esBot.chatUtilities.beggarSentences.length; i++){
                 if(msg.indexOf(esBot.chatUtilities.beggarSentences[i]) >= 0){
-                    API.sendChat("/me @" + chat.from + ", please don't ask for fans.");
+                    API.sendChat("/me @" + chat.from + ", ne trazi fanove.");
                     return true;
                 }
             } 
@@ -737,14 +737,14 @@ var esBot = {
                     if (plugRoomLinkPatt.exec(msg)) {
                       sender = API.getUser(chat.fromID);
                       if (perm === 0) {                                                              
-                              API.sendChat("/me @" + chat.from + ", don't post links to other rooms please.");
+                              API.sendChat("/me @" + chat.from + ", ne postavljaj linkove drugih soba(zajednica)!");
                               API.moderateDeleteChat(chat.chatID);
                               return true;
                       }
                     }
                 if(msg.indexOf('http://adf.ly/') > -1){
                     API.moderateDeleteChat(chat.chatID);
-                    API.sendChat('/me @' + chat.from + ', please change your autowoot program. We suggest PlugCubed: http://plugcubed.net/');
+                    API.sendChat('/me @' + chat.from + ', promeni svoj autowoot program. Predlazemo PlugCubed: http://plugcubed.net/');
                     return true;
                 }                    
                 if(msg.indexOf('autojoin was not enabled') > 0 || msg.indexOf('AFK message was not enabled') > 0 || msg.indexOf('!afkdisable') > 0 || msg.indexOf('!joindisable') > 0 || msg.indexOf('autojoin disabled') > 0 || msg.indexOf('AFK message disabled') > 0){ 
@@ -1219,7 +1219,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat("/me We recommend PlugCubed for autowooting: http://plugcubed.net/")
+                                    API.sendChat("/me za autowoot preporucujemo Plugcubed: http://plugcubed.net/")
                                 };                              
                         },
                 },
@@ -1231,7 +1231,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat("/me A Brand Ambassador is the voice of the plug.dj users. They promote events, engage the community and share the plug.dj message around the world. For more info: http://blog.plug.dj/brand-ambassadors/");
+                                    API.sendChat("/me Brand Ambassador je glas korisnika plug.dj-a. Oni promovisu dogadjaje, povezuju zajednice i sire poruke plug.dj-a sirom sveta. Za vise informacija: http://blog.plug.dj/brand-ambassadors/");
                                 };                              
                         },
                 },
@@ -1295,7 +1295,7 @@ var esBot = {
                                                 API.moderateDeleteChat(currentchat[i].classList[j].substr(4));
                                         }
                                     }                                 
-                                return API.sendChat('/me [@' + chat.from + '] Cleared the chat.');
+                                return API.sendChat('/me [@' + chat.from + '] je ocistio chat.');
                                 
                                 };                              
                         },
@@ -1308,7 +1308,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat("/me "+ esBot.name + " commands: " + esBot.cmdLink);
+                                    API.sendChat("/me "+ esBot.name + " komande: " + esBot.cmdLink);
                                 };                              
                         },
                 },
@@ -1455,7 +1455,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me Emoji list: http://www.emoji-cheat-sheet.com/');
+                                    API.sendChat('/me Lista smajlija: http://www.emoji-cheat-sheet.com/');
                                 };                              
                         },
                 },
@@ -1526,7 +1526,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.fbLink === "string")
-                                        API.sendChat('/me [' + chat.from + '] Like us on facebook: ' + esBot.roomSettings.fbLink);
+                                        API.sendChat('/me [' + chat.from + '] Lajkujte nas na Facebook-u: ' + esBot.roomSettings.fbLink);
                                 };                              
                         },
                 },
@@ -1560,7 +1560,7 @@ var esBot = {
                                 else{
                                     if(esBot.room.roulette.rouletteStatus && esBot.room.roulette.participants.indexOf(chat.fromID) < 0){
                                         esBot.room.roulette.participants.push(chat.fromID);
-                                        API.sendChat("/me @" + chat.from + " joined the roulette! (!leave if you regret it.)");
+                                        API.sendChat("/me @" + chat.from + " se pridruzio ruletu! (!leave ako zelis da napustis rulet.)");
                                     }
                                 };                              
                         },
@@ -1581,7 +1581,7 @@ var esBot = {
                                     var join = esBot.userUtilities.getJointime(user);
                                     var time = Date.now() - join;
                                     var timeString = esBot.roomUtilities.msToStr(time);
-                                    API.sendChat('/me [@' + chat.from + '] @' + name + ' has been in the room for ' + timeString + '.');
+                                    API.sendChat('/me [@' + chat.from + '] @' + name + ' je u sobi vec ' + timeString + '.');
                                 };                              
                         },
                 },
@@ -1617,8 +1617,8 @@ var esBot = {
                                         return API.sendChat("/me [@" + chat.from + "] you can't kick users with an equal or higher rank than you!")
 
                                     if(!isNaN(time)){
-                                        API.sendChat('/me [' + chat.from + ' used kick, it\'s super effective!]');
-                                        API.sendChat('/me [@' + name + '], you are being kicked from the community for ' + time + ' minutes.');
+                                        API.sendChat('/me [' + chat.from + ' je koristio kick, jako je efektivno!]');
+                                        API.sendChat('/me [@' + name + '], izbacen si iz zajednice (sobe) na ' + time + ' minuta.');
 
                                         if(time > 24*60*60) API.moderateBanUser(user.id, 1 , API.BAN.PERMA);
                                             else API.moderateBanUser(user.id, 1, API.BAN.DAY);
@@ -1642,7 +1642,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     storeToStorage();
-                                    API.sendChat('/me Shutting down.');
+                                    API.sendChat('/me Gasenje....');
                                     esBot.disconnectAPI();
                                     setTimeout(function(){kill();},1000);
                                 };                              
@@ -1659,7 +1659,7 @@ var esBot = {
                                     var ind = esBot.room.roulette.participants.indexOf(chat.fromID);
                                     if(ind > -1){
                                         esBot.room.roulette.participants.splice(ind, 1);
-                                        API.sendChat("/me @" + chat.from + " left the roulette!");
+                                        API.sendChat("/me @" + chat.from + " je napustio rulet!");
                                     }
                                 };                              
                         },
@@ -1682,11 +1682,11 @@ var esBot = {
                                     if(perm >= 1 || isDj){
                                         if(media.format === '1'){
                                             var linkToSong = "https://www.youtube.com/watch?v=" + media.cid;
-                                            API.sendChat('/me [' + from + '] Link to current song: ' + linkToSong);
+                                            API.sendChat('/me [' + from + '] Link trenutne pesme: ' + linkToSong);
                                         }
                                         if(media.format === '2'){
                                             var SCsource = '/tracks/' + media.cid;
-                                            SC.get('/tracks/' + media.cid, function(sound){API.sendChat('/me [' + from + '] Link to current song: ' + sound.permalink_url);});
+                                            SC.get('/tracks/' + media.cid, function(sound){API.sendChat('/me [' + from + '] Link do trenutne pesme: ' + sound.permalink_url);});
                                         }   
                                     }                    
                                 
@@ -1864,7 +1864,7 @@ var esBot = {
                                     var maxTime = msg.substring(cmd.length + 1);
                                     if(!isNaN(maxTime)){
                                         esBot.roomSettings.maximumSongLength = maxTime;
-                                        return API.sendChat('/me [@' + chat.from + '] The maximum song duration is set to ' + esBot.roomSettings.maximumSongLength + ' minutes.');
+                                        return API.sendChat('/me [@' + chat.from + '] Maksimalno trajenje pesme je podeseno na ' + esBot.roomSettings.maximumSongLength + ' minuta.');
                                     }
                                     else return API.sendChat('/me [@' + chat.from + '] No correct duration specified.');
                                 };                              
@@ -1958,7 +1958,7 @@ var esBot = {
                                         esBot.room.mutedUsers.push(user.id);
                                         if(time === null) API.sendChat('/me [@' + chat.from + '] Muted @' + name + '.');
                                         else{
-                                            API.sendChat('/me [@' + chat.from + '] Muted @' + name + ' for ' + time + ' minutes.');
+                                            API.sendChat('/me [@' + chat.from + '] Muted @' + name + ' for ' + time + ' minuta.');
                                             setTimeout(function(id){
                                                 var muted = esBot.room.mutedUsers;
                                                 var wasMuted = false;
@@ -2033,7 +2033,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me Be right back.');
+                                    API.sendChat('/me Odmah se vracam.');
                                     esBot.disconnectAPI();
                                     kill();
                                     setTimeout(function(){$.getScript(esBot.scriptLink);},2000);
@@ -2108,7 +2108,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.rulesLink === "string")
-                                        return API.sendChat("/me Please find the room rules here: " + esBot.roomSettings.rulesLink);                                
+                                        return API.sendChat("/me Molimo procitajte pravila: " + esBot.roomSettings.rulesLink);                                
                                 };                              
                         },
                 },
@@ -2124,7 +2124,7 @@ var esBot = {
                                     var woots = esBot.room.roomstats.totalWoots;
                                     var mehs = esBot.room.roomstats.totalMehs;
                                     var grabs = esBot.room.roomstats.totalCurates;
-                                    API.sendChat('/me [@' + from + '] Total woots: ' + woots + ', total mehs: ' + mehs + ', total grabs: ' + grabs + '.');
+                                    API.sendChat('/me [@' + from + '] Ukupno woota: ' + woots + ', ukupno meha: ' + mehs + ', ukupno grabova: ' + grabs + '.');
                                 };                              
                         },
                 },
@@ -2136,7 +2136,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me [' + chat.from + ' used skip.]');
+                                    API.sendChat('/me [' + chat.from + ' je koristio skip.]');
                                     API.moderateForceSkip();
                                     esBot.room.skippable = false;
                                     setTimeout(function(){ esBot.room.skippable = true}, 5*1000);
@@ -2152,7 +2152,7 @@ var esBot = {
                                 if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
-                                    API.sendChat('/me This bot was made by ' + esBot.creator + '.');
+                                    API.sendChat('/me Ovaj bot je napravio ' + esBot.creator + '.');
                                 };                              
                         },
                 },
@@ -2443,7 +2443,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.website === "string")
-                                        API.sendChat('/me Please visit our website: ' + esBot.roomSettings.website);
+                                        API.sendChat('/me Nas websajt: ' + esBot.roomSettings.website);
                                 };                              
                         },
                 },
@@ -2456,7 +2456,7 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     if(typeof esBot.roomSettings.youtubeLink === "string")
-                                        API.sendChat('/me [' + chat.from + '] Subscribe to us on youtube: ' + esBot.roomSettings.youtubeLink);                                
+                                        API.sendChat('/me [' + chat.from + '] Predplatite se na nas YouTube kanal: ' + esBot.roomSettings.youtubeLink);                                
                                 };                              
                         },
                 },
