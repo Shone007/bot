@@ -1322,11 +1322,11 @@ var esBot = {
                         rank: 'user',
                         type: 'startsWith',
 
-                        cookies: ['has given you a chocolate chip cookie!',
-                                   'has given you a soft homemade oatmeal cookie!',
-                                   'has given you a plain, dry, old cookie. It was the last one in the bag. Gross.',
-                                   'gives you a sugar cookie. What, no frosting and sprinkles? 0/10 would not touch.',
-                                   'gives you a chocolate chip cookie. Oh wait, those are raisins. Bleck!',
+                        cookies: ['ti je dao cokoladni kolacic!',
+                                   'ti je dao jedan svezi domaci kolacic!',
+                                   'ti daje stari,prljavi,suvi kolacic. To je bio poslednji u vreci. Odvratno.',
+                                   'ti daje secerni kolacic. Cekaj,nema cokolade i fila? 0/10 necu ga dirati.',
+                                   'ti je dao cokoladni kolacic. Cekaj, to su grozdjice. Bljak!',
                                    'gives you an enormous cookie. Poking it gives you more cookies. Weird.',
                                    'gives you a fortune cookie. It reads "Why aren\'t you working on any projects?"',
                                    'gives you a fortune cookie. It reads "Give that special someone a compliment"',
@@ -1341,7 +1341,7 @@ var esBot = {
                                    'gives you an Oreo cookie with a glass of milk!',
                                    'gives you a rainbow cookie made with love :heart:',
                                    'gives you an old cookie that was left out in the rain, it\'s moldy.',
-                                   'bakes you fresh cookies, it smells amazing.'
+                                   'ti je ispekao svez kolacic, mirise jako dobro.'
                             ],
 
                         getCookie: function() {
