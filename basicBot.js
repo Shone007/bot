@@ -608,7 +608,7 @@ var esBot = {
                     var now = +new Date();
                     var interfix = '';
                     if(plays > 1) interfix = 's'
-                    API.sendChat('/me :repeat: Ova pesma je pustana ' + plays + ' vreme' + interfix + ' u zadnjih ' + esBot.roomUtilities.msToStr(Date.now() - firstPlayed) + ', poslednje pustanje je bilo pre ' + esBot.roomUtilities.msToStr(Date.now() - lastPlayed) + ' . :repeat: ');
+                    API.sendChat('/me :repeat: Ova pesma je pustana ' + plays + ' put' + interfix + ' u zadnjih ' + esBot.roomUtilities.msToStr(Date.now() - firstPlayed) + ', poslednje pustanje je bilo pre ' + esBot.roomUtilities.msToStr(Date.now() - lastPlayed) + ' . :repeat: ');
 
                     esBot.room.historyList[i].push(+new Date());
                     alreadyPlayed = true;
