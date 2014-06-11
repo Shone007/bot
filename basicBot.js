@@ -686,13 +686,18 @@ var esBot = {
                 ch = msg.charAt(i);
                 if(ch >= 'A' && ch <= 'Z') capitals++;
             }
-            if(capitals >= 40){
+            if(capitals >= 20){
                 API.sendChat("/me @" + chat.from + ", iskljuci capslock.");
                 return true;
             }
             msg = msg.toLowerCase();
             if(msg === 'skip'){
                     API.sendChat("/me @" + chat.from + ", ne trazi skip.");
+                    return true;
+            }
+            msg = msg.toLowerCase();
+            if(msg === 'meh'){
+                    API.sendChat("/me @" + chat.from + ", ne trazi meh,dobices ban.");
                     return true;
                     }
             for (var j = 0; j < esBot.chatUtilities.spam.length; j++){
