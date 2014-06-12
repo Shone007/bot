@@ -190,7 +190,7 @@ var esBot = {
                     var ind = Math.floor(Math.random() * esBot.room.roulette.participants.length);
                     var winner = esBot.room.roulette.participants[ind];
                     esBot.room.roulette.participants = [];
-                    var pos = API.getWaitList().length)/API.getWaitList().length);
+                    var pos = (API.getWaitList().length) / API.getWaitList().length + 1));
                     var user = esBot.userUtilities.lookupUser(winner);
                     var name = user.username;
                     API.sendChat("/me Imamo pobednika! @" + name + " na poziciju " + pos + ".");
