@@ -126,7 +126,7 @@ var esBot = {
             etaRestriction: false,
             welcome: true,
             opLink: null,
-            rulesLink: true,
+            rulesLink: null,
             themeLink: null,
             fbLink: true,
             youtubeLink: null,
