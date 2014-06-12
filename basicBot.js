@@ -126,14 +126,14 @@ var esBot = {
             etaRestriction: false,
             welcome: true,
             opLink: null,
-            rulesLink: null,
+            rulesLink: http://goo.gl/plh575,
             themeLink: null,
             fbLink: true,
             youtubeLink: null,
             website: null,
-            intervalMessages: [],
-            messageInterval: 5,
-            songstats: false,                      
+            intervalMessages: [Update:Bot je poravljen],
+            messageInterval: 2,
+            songstats: true,                      
         },        
         room: {        
             users: [],                
@@ -183,7 +183,7 @@ var esBot = {
                 startRoulette: function(){
                     esBot.room.roulette.rouletteStatus = true;
                     esBot.room.roulette.countdown = setTimeout(function(){ esBot.room.roulette.endRoulette(); }, 60 * 1000);
-                    API.sendChat("/me Rulet je zavrtit! kucaj!join da ucestvujes!");
+                    API.sendChat("/me Rulet je zavrtit! kucaj !join da ucestvujes!");
                 },
                 endRoulette: function(){
                     esBot.room.roulette.rouletteStatus = false;
@@ -454,7 +454,7 @@ var esBot = {
                                             }, 90 * 1000, user);
                                         }
                                         else if(warncount === 1){
-                                            API.sendChat("/me @" + name + ", you will be removed soon if you don't respond. [AFK]");
+                                            API.sendChat("/me @" + name + ", bices ukljonjen uskoro ukoliko ne odgovoris. [AFK]");
                                             user.afkWarningCount = 3;
                                             user.afkCountdown = setTimeout(function(userToChange){
                                                 userToChange.afkWarningCount = 2;
@@ -543,11 +543,11 @@ var esBot = {
                 var jt = u.jointime;
                 var t = Date.now() - jt;
                 if(t < 10*1000) greet = false;
-                else var welcome = "Welcome back, ";
+                else var welcome = "Dobro došao nazad, ";
             }
             else{
                 esBot.room.users.push(new esBot.User(user.id, user.username));
-                var welcome = "Welcome ";
+                var welcome = "Dobro nam došao ";
             }    
             for(var j = 0; j < esBot.room.users.length;j++){
                 if(esBot.userUtilities.getUser(esBot.room.users[j]).id === user.id){
@@ -877,7 +877,7 @@ var esBot = {
                 'hueh','hu3','brbr','heu','brbr','kkkk','spoder','mafia','zuera','zueira',
                 'zueria','aehoo','aheu','alguem','algum','brazil','zoeira','fuckadmins','affff','vaisefoder','huenaarea',
                 'hitler','ashua','ahsu','ashau','lulz','huehue','hue','huehuehue','merda','pqp','puta','mulher','pula','retarda','caralho','filha','ppk',
-                'gringo','fuder','foder','hua','ahue','modafuka','modafoka','mudafuka','mudafoka','ooooooooooooooo','foda'
+                'gringo','fuder','foder','hua','ahue','modafuka','modafoka','mudafuka','mudafoka','ooooooooooooooo','HAHAHAHAHAHAH'
             ],
             curses: [
                 'nigger', 'faggot', 'nigga', 'niqqa','motherfucker','modafocka'
@@ -1131,9 +1131,9 @@ var esBot = {
                                     var limit = msg.substring(cmd.length + 1);
                                     if(!isNaN(limit)){
                                         esBot.roomSettings.maximumAfk = parseInt(limit, 10);
-                                        API.sendChat('/me [@' + chat.from + '] Maximum afk duration set to ' + esBot.roomSettings.maximumAfk + ' minutes.');
+                                        API.sendChat('/me [@' + chat.from + '] Maksimum AFK podesen na ' + esBot.roomSettings.maximumAfk + ' minuta.');
                                     }
-                                    else API.sendChat('/me [@' + chat.from + '] Invalid limit.');
+                                    else API.sendChat('/me [@' + chat.from + '] Limit nije ispravan.');
                                 };                              
                         },
                 },
@@ -1148,12 +1148,12 @@ var esBot = {
                                     if(esBot.roomSettings.afkRemoval){
                                         esBot.roomSettings.afkRemoval = !esBot.roomSettings.afkRemoval;
                                         clearInterval(esBot.room.afkInterval);
-                                        API.sendChat('/me [@' + chat.from + '] Turned afk removal off.');
+                                        API.sendChat('/me [@' + chat.from + '] AFK uklanjanje je iskljuceno.');
                                       }
                                     else {
                                         esBot.roomSettings.afkRemoval = !esBot.roomSettings.afkRemoval;
                                         esBot.room.afkInterval = setInterval(function(){esBot.roomUtilities.afkCheck()}, 2 * 1000);
-                                        API.sendChat('/me [@' + chat.from + '] Turned afk removal on.');
+                                        API.sendChat('/me [@' + chat.from + '] AFK uklanjanje je ukljuceno.');
                                       }
                                 };                              
                         },
@@ -1167,10 +1167,10 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{
                                     var msg = chat.message;
-                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] No user specified.')
+                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] Korisnik nije naveden.')
                                     var name = msg.substring(cmd.length + 2);
                                     var user = esBot.userUtilities.lookupUserName(name);
-                                    if(typeof user === 'boolean') return API.sendChat('/me [@' + chat.from + '] Invalid user specified.');
+                                    if(typeof user === 'boolean') return API.sendChat('/me [@' + chat.from + '] Ime korisnika nije ispravno.');
                                     esBot.userUtilities.setLastActivity(user);
                                     API.sendChat('/me [@' + chat.from + '] Reset the afk status of @' + name + '.');
                                 };                              
@@ -1185,14 +1185,14 @@ var esBot = {
                                 if( !esBot.commands.executable(this.rank, chat) ) return void (0);
                                 else{                                    
                                     var msg = chat.message;
-                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] No user specified.');
+                                    if(msg.length === cmd.length) return API.sendChat('/me [@' + chat.from + '] Korisnik nije naveden.');
                                     var name = msg.substring(cmd.length + 2);
                                     var user = esBot.userUtilities.lookupUserName(name);
-                                    if(typeof user === 'boolean') return API.sendChat('/me [@' + chat.from + '] Invalid user specified.');
+                                    if(typeof user === 'boolean') return API.sendChat('/me [@' + chat.from + '] Ime korisnika nije ispravno.');
                                     var lastActive = esBot.userUtilities.getLastActivity(user);
                                     var inactivity = Date.now() - lastActive;
                                     var time = esBot.roomUtilities.msToStr(inactivity);
-                                    API.sendChat('/me [@' + chat.from + '] @' + name + ' has been inactive for ' + time + '.');
+                                    API.sendChat('/me [@' + chat.from + '] @' + name + ' nije aktivan vec ' + time + '.');
                                 };                              
                         },
                 },
