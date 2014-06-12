@@ -128,7 +128,7 @@ var esBot = {
             opLink: null,
             rulesLink: null,
             themeLink: null,
-            fbLink: true,
+            fbLink: null,
             youtubeLink: null,
             website: null,
             intervalMessages: [Update:Bot je poravljen],
