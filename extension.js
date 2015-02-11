@@ -53,7 +53,7 @@
     //Change the bots default settings and make sure they are loaded on launch
 
     localStorage.setItem("basicBotsettings", JSON.stringify({
-        botName: "basicBot",
+        botName: "ST bot",
         language: "serbian",
         chatLink: "https://rawgit.com/Shone007/bot/master/sr.json",
         startupCap: 1, // 1-200
@@ -69,7 +69,7 @@
         cycleGuard: true,
         maximumCycletime: 10,
         timeGuard: true,
-        maximumSongLength: 10,
+        maximumSongLength: 5,
         autodisable: true,
         commandCooldown: 30,
         usercommandsEnabled: true,
@@ -87,10 +87,10 @@
         afkRankCheck: "ambassador",
         motdEnabled: false,
         motdInterval: 5,
-        motd: "Temporary Message of the Day",
+        motd: "Privremena poruka dana",
         filterChat: true,
         etaRestriction: false,
-        welcome: true,
+        welcome: false,
         opLink: null,
         rulesLink: null,
         themeLink: null,
@@ -98,7 +98,7 @@
         youtubeLink: null,
         website: null,
         intervalMessages: [],
-        messageInterval: 5,
+        messageInterval: 4,
         songstats: true,
         commandLiteral: "!",
         blacklists: {
