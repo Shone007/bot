@@ -119,7 +119,7 @@
     "unmuted": "/me [@%%NAME%%] Unmuted @%%USERNAME%%.",
     "muterank": "/me [@%%NAME%%] Ne možeš mutovati osobe sa istim ili većim rankom od tebe.",
     "oplist": "/me OP lista: %%LINK%%",
-    "pong": API.sendChat(var x = document.getElementById("http://i01.i.aliimg.com/wsphoto/v0/1779613427_1/Free-Shipping-20-Pieces-Lot-White-Plastic-Ping-font-b-Pong-b-font-Ball-font-b.jpg"));,
+    "pong": API.sendChat(var x = document.getElementById("http://i01.i.aliimg.com/wsphoto/v0/1779613427_1/Free-Shipping-20-Pieces-Lot-White-Plastic-Ping-font-b-Pong-b-font-Ball-font-b.jpg")),
     "reload": "/me Odmah se vraćam.",
     "removenotinwl": "/me [@%%NAME%%] Korisnik @%%USERNAME%% nije na listi.",
     "roomrules": "/me Pročitajte pravila ovde: %%LINK%%",
