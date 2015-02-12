@@ -75,13 +75,13 @@
         usercommandsEnabled: true,
         lockskipPosition: 3,
         lockskipReasons: [
-            ["theme", "This song does not fit the room theme. "],
-            ["op", "This song is on the OP list. "],
-            ["history", "This song is in the history. "],
-            ["mix", "You played a mix, which is against the rules. "],
-            ["sound", "The song you played had bad sound quality or no sound. "],
-            ["nsfw", "The song you contained was NSFW (image or sound). "],
-            ["unavailable", "The song you played was not available for some users. "]
+            ["theme", "Pesma se ne uklapa sa temom sobe. "],
+            ["op", "Ova pesma je u OP listi. "],
+            ["history", "Ova pesma je u istoriji. "],
+            ["mix", "Pustio si mix,sto je protiv pravila. "],
+            ["sound", "Pesma koju si pustio ima los kvalitet zvuka ili ga uopste nema. "],
+            ["nsfw", "Tvoja pesma sadrzi NSFW (slika ili zvuk). "],
+            ["unavailable", "Pesma koju si pustio nije dostupna za neke korisnike. "]
         ],
         afkpositionCheck: 15,
         afkRankCheck: "ambassador",
