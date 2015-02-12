@@ -55,7 +55,7 @@
     localStorage.setItem("basicBotsettings", JSON.stringify({
         botName: "ST bot",
         language: "serbian",
-        chatLink: "https://rawgit.com/Shone007/bot/master/sr.json",
+        chatLink: "https://raw.githubusercontent.com/Shone007/bot/master/sr.json",
         startupCap: 1, // 1-200
         startupVolume: 0, // 0-100
         startupEmoji: false, // true or false
